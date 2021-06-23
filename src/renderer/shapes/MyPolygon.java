@@ -7,12 +7,23 @@ import java.awt.*;
 
 public class MyPolygon {
 
+  private Color color;
   private final MyPoint[] points;
 
-  public MyPolygon(MyPoint...points) {
-    this.points = new MyPoint[points.length];
-    for (int i = 0; i < points.length; i++) {
-      MyPoint p = points[i];
+  public MyPolygon(Color color, MyPoint..._points) {
+    this.color = color;
+    this.points = new MyPoint[_points.length];
+    for (int i = 0; i < this.points.length; i++) {
+      MyPoint p = _points[i];
+      this.points[i] = new MyPoint(p.x, p.y, p.z);
+    }
+  }
+
+  public MyPolygon(MyPoint..._points) {
+    this.color = Color.WHITE;
+    this.points = new MyPoint[_points.length];
+    for (int i = 0; i < this.points.length; i++) {
+      MyPoint p = _points[i];
       this.points[i] = new MyPoint(p.x, p.y, p.z);
     }
   }
@@ -23,7 +34,11 @@ public class MyPolygon {
       Point p = PointConverter.convertPoint(point);
       poly.addPoint(p.x, p.y);
     }
-    g.setColor(Color.CYAN);
+    g.setColor(this.color);
     g.fillPolygon(poly);
+  }
+
+  public void setColor(Color c) {
+    this.color = c;
   }
 }
