@@ -38,6 +38,14 @@ public class MyPolygon {
     g.fillPolygon(poly);
   }
 
+  public void rotate(boolean CW, float xDeg, float yDeg, float zDeg) {
+    for (MyPoint p : points) {
+      PointConverter.rotateAxisX(p, CW, xDeg);
+      PointConverter.rotateAxisY(p, CW, yDeg);
+      PointConverter.rotateAxisZ(p, CW, zDeg);
+    }
+  }
+
   public void setColor(Color c) {
     this.color = c;
   }

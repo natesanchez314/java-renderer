@@ -30,8 +30,15 @@ public class Tetrahedron {
     }
   }
 
-  private void sortPolygons() {
+  public void rotate(boolean CW, float xDeg, float yDeg, float zDeg) {
+    for (MyPolygon p : polygons) {
+      p.rotate(CW, xDeg, yDeg, zDeg);
+      this.sortPolygons();
+    }
+  }
 
+  private void sortPolygons() {
+    // TODO
   }
 
   private void setPolygonsColor() {

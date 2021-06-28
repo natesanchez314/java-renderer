@@ -64,9 +64,10 @@ public class Display extends Canvas implements Runnable {
       while (delta >= 1) {
         update();
         delta--;
+        render();
+        frames++;
       }
-      render();
-      frames++;
+
 
       if (System.currentTimeMillis() - timer > 1000) {
         timer += 1000;
@@ -85,23 +86,23 @@ public class Display extends Canvas implements Runnable {
 
     float s = 100.0f;
 
-    MyPoint p0 = new MyPoint(-s / 2.0f, -s / 2.0f, s / 2.0f);
-    MyPoint p1 = new MyPoint(s / 2.0f, -s / 2.0f, s / 2.0f);
-    MyPoint p2 = new MyPoint(s / 2.0f, s / 2.0f, s / 2.0f);
-    MyPoint p3 = new MyPoint(-s / 2.0f, s / 2.0f, s / 2.0f);
+    MyPoint p0 = new MyPoint(-s / 2.0f, -s / 2.0f,  s / 2.0f);
+    MyPoint p1 = new MyPoint( s / 2.0f, -s / 2.0f,  s / 2.0f);
+    MyPoint p2 = new MyPoint( s / 2.0f,  s / 2.0f,  s / 2.0f);
+    MyPoint p3 = new MyPoint(-s / 2.0f,  s / 2.0f,  s / 2.0f);
     MyPoint p4 = new MyPoint(-s / 2.0f, -s / 2.0f, -s / 2.0f);
-    MyPoint p5 = new MyPoint(s / 2.0f, -s / 2.0f, -s / 2.0f);
-    MyPoint p6 = new MyPoint(s / 2.0f, s / 2.0f, -s / 2.0f);
-    MyPoint p7 = new MyPoint(-s / 2.0f, s / 2.0f, -s / 2.0f);
+    MyPoint p5 = new MyPoint( s / 2.0f, -s / 2.0f, -s / 2.0f);
+    MyPoint p6 = new MyPoint( s / 2.0f,  s / 2.0f, -s / 2.0f);
+    MyPoint p7 = new MyPoint(-s / 2.0f,  s / 2.0f, -s / 2.0f);
 
     this.tetra = new Tetrahedron(
         //Color.cyan,
-        new MyPolygon(Color.RED, p0, p1, p2, p3),
         new MyPolygon(Color.BLUE, p4, p5, p6, p7),
-        new MyPolygon(Color.YELLOW, p0, p1, p4, p5),
+        new MyPolygon(Color.YELLOW, p0, p1, p5, p4),
         new MyPolygon(Color.GREEN, p0, p4, p7, p3),
         new MyPolygon(Color.WHITE, p1, p5, p6, p2),
-        new MyPolygon(Color.ORANGE, p3, p2, p6, p7)
+        new MyPolygon(Color.ORANGE, p3, p2, p6, p7),
+        new MyPolygon(Color.RED, p0, p1, p2, p3)
     );
   }
 
@@ -123,6 +124,6 @@ public class Display extends Canvas implements Runnable {
   }
 
   private void update() {
-
+    this.tetra.rotate(true, 1.0f, 1.0f, 1.0f);
   }
 }
